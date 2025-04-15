@@ -1,11 +1,11 @@
-FROM node:18-alpine AS frontend
+FROM node:20-alpine AS frontend
 WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ .
 
 RUN npm run build
-FROM gradle:8-jdk23 AS backend
+FROM gradle:jdk23 AS backend
 WORKDIR /app
 COPY backend/ .
 COPY --from=frontend /app/dist ./src/main/resources/static
