@@ -4,8 +4,6 @@ import one.iamjae.backend.model.User;
 import one.iamjae.backend.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

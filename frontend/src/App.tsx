@@ -11,6 +11,10 @@ function App() {
             .catch((err) => console.error('Error fetching user:', err));
     }, []);
 
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
+
     return (
         <div className={`text-3xl bg-yellow`}>
             <span>{user?.id}</span>

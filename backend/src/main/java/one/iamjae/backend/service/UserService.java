@@ -5,8 +5,6 @@ import one.iamjae.backend.model.User;
 import one.iamjae.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserService {
 

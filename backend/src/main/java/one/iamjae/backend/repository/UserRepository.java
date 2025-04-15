@@ -2,11 +2,8 @@ package one.iamjae.backend.repository;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import one.iamjae.backend.model.User;
-
-import java.util.List;
 
 @Repository
 public class UserRepository {
