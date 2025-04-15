@@ -22,11 +22,8 @@ public class UserRepository {
             rs.getString("email")
     );
 
-    public List<User> findAll() {
+    public List<User> find() {
         return jdbc.query("SELECT * FROM users", rowMapper);
     }
 
-    public void save(User user) {
-        jdbc.update("INSERT INTO users (name, email) VALUES (?, ?)", user.getName(), user.getEmail());
-    }
 }
