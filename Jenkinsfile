@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Clone') {
             steps {
@@ -7,35 +8,15 @@ pipeline {
             }
         }
 
-        stage('Build React') {
+        stage('Build Image Only') {
             steps {
-                dir("frontend") {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
-            }
-        }
-
-        stage('Copy React → Spring Boot static') {
-            steps {
-                sh "rm -rf backend/src/main/resources/static/*"
-                sh "cp -r frontend/dist/* backend/src/main/resources/static/"
-            }
-        }
-
-        stage('Build Spring Boot') {
-            steps {
-                dir("backend") {
-                    sh './gradlew clean build'
-                }
-            }
-        }
-
-        stage('Docker Compose Up') {
-            steps {
-                sh 'docker-compose down'
                 sh 'docker-compose build'
-                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('Swap Running App') {
+            steps {
+                sh 'docker-compose up -d --no-deps --force-recreate app'
             }
         }
     }

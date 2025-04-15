@@ -2,7 +2,7 @@ function App() {
 
   return (
       <div className={`text-3xl bg-yellow`}>
-          <span className={`text-sm`}>Hello World</span>
+          <span className={`text-sm`}>Bye World</span>
       </div>
   )
 }
