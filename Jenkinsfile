@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Swap Running App') {
             steps {
-                sh 'docker-compose up -d --no-deps --force-recreate app'
+                sh 'docker-compose up -d --force-recreate app'
             }
         }
     }
