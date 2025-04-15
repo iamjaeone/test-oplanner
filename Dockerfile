@@ -1,10 +1,10 @@
 FROM node:20-alpine AS frontend
 WORKDIR /app
-COPY frontend/package*.json ./
-RUN npm install
+COPY frontend/package.json ./
+RUN npm install --cache /root/.npm
 COPY frontend/ .
-
 RUN npm run build
+
 FROM gradle:jdk23 AS backend
 WORKDIR /app
 COPY backend/ .
