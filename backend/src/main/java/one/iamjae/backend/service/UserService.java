@@ -1,0 +1,26 @@
+package one.iamjae.backend.service;
+
+
+import one.iamjae.backend.model.User;
+import one.iamjae.backend.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserService {
+
+    private final UserRepository repo;
+
+    public UserService(UserRepository repo) {
+        this.repo = repo;
+    }
+
+    public List<User> getAllUsers() {
+        return repo.findAll();
+    }
+
+    public void createUser(User user) {
+        repo.save(user);
+    }
+}
