@@ -18,7 +18,7 @@ pipeline {
 
         stage('Copy React → Spring Boot static') {
             steps {
-                sh "rm -rf frontend/src/main/resources/static/*"
+                sh "rm -rf backend/src/main/resources/static/*"
                 sh "cp -r frontend/dist/* backend/src/main/resources/static/"
             }
         }
