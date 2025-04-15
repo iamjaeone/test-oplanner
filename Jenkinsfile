@@ -3,13 +3,13 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-user/your-repo.git'
+                git branch: 'main', url: 'https://github.com/iamjaeone/test-oplanner.git'
             }
         }
 
         stage('Build React') {
             steps {
-                dir("${REACT_DIR}") {
+                dir("frontend") {
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -18,14 +18,14 @@ pipeline {
 
         stage('Copy React → Spring Boot static') {
             steps {
-                sh "rm -rf ${SPRING_BOOT_DIR}/src/main/resources/static/*"
-                sh "cp -r ${REACT_DIR}/build/* ${SPRING_BOOT_DIR}/src/main/resources/static/"
+                sh "rm -rf frontend/src/main/resources/static/*"
+                sh "cp -r frontend/dist/* backend/src/main/resources/static/"
             }
         }
 
         stage('Build Spring Boot') {
             steps {
-                dir("${SPRING_BOOT_DIR}") {
+                dir("backend") {
                     sh './gradlew clean build'
                 }
             }
