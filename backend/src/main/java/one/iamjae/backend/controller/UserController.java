@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService service;
@@ -17,12 +17,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers() {
-        return service.getAllUsers();
-    }
-
-    @PostMapping
-    public void createUser(@RequestBody User user) {
-        service.createUser(user);
+    public User getUser() {
+        return service.getUser();
     }
 }

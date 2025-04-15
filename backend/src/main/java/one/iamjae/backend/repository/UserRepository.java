@@ -1,5 +1,6 @@
 package one.iamjae.backend.repository;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -16,14 +17,8 @@ public class UserRepository {
         this.jdbc = jdbc;
     }
 
-    private final RowMapper<User> rowMapper = (rs, rowNum) -> new User(
-            rs.getLong("id"),
-            rs.getString("name"),
-            rs.getString("email")
-    );
-
-    public List<User> find() {
-        return jdbc.query("SELECT * FROM users", rowMapper);
+    public User find() {
+        return jdbc.queryForObject("SELECT * FROM users WHERE id = 1;", new BeanPropertyRowMapper<>(User.class));
     }
 
 }

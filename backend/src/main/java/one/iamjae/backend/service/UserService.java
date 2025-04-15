@@ -16,11 +16,7 @@ public class UserService {
         this.repo = repo;
     }
 
-    public List<User> getAllUsers() {
-        return repo.findAll();
-    }
-
-    public void createUser(User user) {
-        repo.save(user);
+    public User getUser() {
+        return repo.find();
     }
 }

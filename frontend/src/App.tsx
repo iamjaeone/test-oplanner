@@ -1,27 +1,23 @@
 import {useEffect, useState} from "react";
+import { getUser } from "./api/api";
+import {User} from "./api/model.ts";
 
 function App() {
-    const [users, setUsers] = useState([]);
+    const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
-        fetch('http://192.168.0.11:8080/api/users') // 포트 확인! docker-compose에 따라 바뀔 수 있음
+            getUser()
             .then((res) => res.json())
-            .then((data) => setUsers(data))
-            .catch((err) => console.error('Error fetching users:', err));
+            .then((data) => setUser(data))
+            .catch((err) => console.error('Error fetching user:', err));
     }, []);
 
-    useEffect(() => {
-        console.log(users);
-    }, [users]);
-
-  return (
-      <div className={`text-3xl bg-yellow`}>
-          <ul>
-              {users.map((user) => (
-                  <li key={user.id}>{user.name} ({user.email})</li>
-              ))}
-          </ul>
-      </div>
-  )
+    return (
+        <div className={`text-3xl bg-yellow`}>
+            <span>{user?.id}</span>
+            <span>{user?.name}</span>
+            <span>{user?.email}</span>
+        </div>
+    );
 }
 
 export default App;
