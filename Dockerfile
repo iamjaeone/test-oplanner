@@ -1,8 +1,10 @@
 FROM node:18-alpine AS frontend
 WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm install
 COPY frontend/ .
-RUN npm install && npm run build
 
+RUN npm run build
 FROM gradle:8-jdk23 AS backend
 WORKDIR /app
 COPY backend/ .

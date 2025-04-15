@@ -15,7 +15,7 @@ public class UserRepository {
     }
 
     public User find() {
-        return jdbc.queryForObject("SELECT * FROM users WHERE id = 1;", new BeanPropertyRowMapper<>(User.class));
+        return jdbc.queryForObject("SELECT * FROM users WHERE name like '재원';", new BeanPropertyRowMapper<>(User.class));
     }
 
 }

@@ -16,7 +16,8 @@ function App() {
     }, [user]);
 
     return (
-        <div className={`text-3xl bg-yellow`}>
+        <div className={`text-3xl bg-yellow flex flex-col`}>
+            <span>Hello</span>
             <span>{user?.id}</span>
             <span>{user?.name}</span>
             <span>{user?.email}</span>
