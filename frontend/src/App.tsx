@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import { getUser } from "./api/api";
+import {getUser} from "./api/api";
 import {User} from "./api/model.ts";
 
 function App() {
     const [user, setUser] = useState<User | null>(null);
     useEffect(() => {
-            getUser()
+        getUser()
             .then((res) => res.json())
             .then((data) => setUser(data))
             .catch((err) => console.error('Error fetching user:', err));
@@ -16,11 +16,13 @@ function App() {
     }, [user]);
 
     return (
-        <div className={`text-3xl bg-yellow flex flex-col`}>
-            <span>Hello</span>
-            <span>{user?.id}</span>
-            <span>{user?.name}</span>
-            <span>{user?.email}</span>
+        <div className={`w-full`}>
+            <div className={`w-min h-screen mx-auto flex flex-col justify-center`}>
+                <span>Hello</span>
+                <span>{user?.id}</span>
+                <span>{user?.name}</span>
+                <span>{user?.email}</span>
+            </div>
         </div>
     );
 }
